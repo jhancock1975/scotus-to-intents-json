@@ -88,7 +88,7 @@ public class ScotusToIntent {
 			
 			pw.println("\t\"patterns\" : [\"" + escapeDoubleQuotes(removeSpeakerName(line1)) + "\"],");
 			
-			pw.println("\t\"responses\" : [\"" + removeSpeakerName(line2) + "\"]");
+			pw.println("\t\"responses\" : [\"" + escapeDoubleQuotes(removeSpeakerName(line2)) + "\"]");
 			
 			pw.println("}");
 			
