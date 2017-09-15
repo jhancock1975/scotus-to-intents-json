@@ -86,9 +86,9 @@ public class ScotusToIntent {
 			pw.println("{ \"tag\" : \"" + tagNumber + "\",");
 			tagNumber++;
 			
-			pw.println("\t\"patterns\" : [\"" + removeSpeakerName(line1) + "\"],");
+			pw.println("\t\"patterns\" : [\"" + escapeDoubleQuotes(removeSpeakerName(line1)) + "\"],");
 			
-			pw.println("\t\"responses\" : [\"" + line2 + "\"]");
+			pw.println("\t\"responses\" : [\"" + removeSpeakerName(line2) + "\"]");
 			
 			pw.println("}");
 			
@@ -99,9 +99,20 @@ public class ScotusToIntent {
 		
 	}
 
+	private String escapeDoubleQuotes(String removeSpeakerName) {
+		return removeSpeakerName.replace("\"", "\\\"");
+	}
+
+	/**
+	 * the input file's lines start with '>' followed by the speakers name, followed by ':'
+	 * example of how the line starts: > MR. MILLER:
+	 * this data is not relevant for the chatbot
+	 * 
+	 * @param line1
+	 * @return
+	 */
 	private String removeSpeakerName(String line1) {
-		// TODO Auto-generated method stub
-		return null;
+		return line1.replaceAll(">.*?\\:", "");
 	}
 
 	private void printUsage() {
