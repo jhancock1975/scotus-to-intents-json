@@ -1,2 +1,6 @@
 scotus/
 .project
+/build/
+.classpath
+.settings/
+
